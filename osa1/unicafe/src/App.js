@@ -44,11 +44,11 @@ function App() {
     setGood(good + 1);
     setAll(all + 1);
   };
-  const moreNeutral = (props) => {
+  const moreNeutral = () => {
     setNeutral(neutral + 1);
     setAll(all + 1);
   };
-  const moreBad = (props) => {
+  const moreBad = () => {
     setBad(bad + 1);
     setAll(all + 1);
   };
