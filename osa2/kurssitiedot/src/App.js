@@ -49,6 +49,7 @@ const App = () => {
 
   return (
     <div>
+      <h1>Web development curriculum</h1>
       {courses.map((item) => (
         <React.Fragment key={item.id}>
           <Course course={item} />
