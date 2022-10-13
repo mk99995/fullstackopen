@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Course from "./Couse";
 
 const Statistics = (props) => {
   if (props.all === 0) {
@@ -56,7 +55,13 @@ function App() {
 
   return (
     <div className="App">
-      <Course course={course} />
+      <h2>give feedback</h2>
+      <button onClick={moreGood}>good</button>
+      <button onClick={moreNeutral}>neutral</button>
+      <button onClick={moreBad}>bad</button>
+      <h2>statistics</h2>
+
+      <Statistics good={good} neutral={neutral} bad={bad} all={all} />
     </div>
   );
 }
