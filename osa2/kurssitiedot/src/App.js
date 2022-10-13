@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div>
       {courses.map((item) => (
-        <React.Fragment key={courses.id}>
+        <React.Fragment key={item.id}>
           <Course course={item} />
         </React.Fragment>
       ))}
