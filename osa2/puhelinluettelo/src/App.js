@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import Phonebook from "./components/Phonebook";
 import PersonsForm from "./components/PersonForm";
 import Numbers from "./components/Numbers";
-import axios from "axios";
+import service from "./services/persons";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -11,10 +11,8 @@ const App = () => {
   const [newFilter, setNewFilter] = useState("");
 
   const hook = () => {
-    console.log("hook");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      console.log("promise fulfilled");
-      setPersons(response.data);
+    service.getAll().then((personList) => {
+      setPersons(personList);
     });
   };
 
@@ -29,8 +27,12 @@ const App = () => {
       const newPerson = {
         name: newName,
         number: newNumber,
+        id: persons.length + 1,
       };
-      setPersons(persons.concat(newPerson));
+      // setPersons(persons.concat(newPerson));
+      service.create(newPerson).then((returned) => {
+        setPersons(persons.concat(returned));
+      });
     }
   };
 

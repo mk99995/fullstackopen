@@ -5,7 +5,6 @@ const Countries = (props) => {
   let amount = props.countries.filter((item) =>
     item.name.common.toLowerCase().includes(props.input.toLowerCase())
   ).length;
-  const showCountry = () => {};
 
   if (amount > 10) {
     return <p>Too many matches, specify another filter</p>;
