@@ -27,13 +27,20 @@ const App = () => {
       const newPerson = {
         name: newName,
         number: newNumber,
-        id: persons.length + 1,
+        id: persons.at(-1).id + 1,
       };
       // setPersons(persons.concat(newPerson));
       service.create(newPerson).then((returned) => {
         setPersons(persons.concat(returned));
       });
     }
+  };
+
+  const deletePerson = (id) => {
+    service.remove(id);
+    service.getAll().then((personList) => {
+      setPersons(personList);
+    });
   };
 
   const handleNameInput = (event) => {
@@ -55,7 +62,11 @@ const App = () => {
         handleNameInput={handleNameInput}
         handleNumberInput={handleNumberInput}
       />
-      <Numbers persons={persons} newFilter={newFilter} />
+      <Numbers
+        persons={persons}
+        newFilter={newFilter}
+        deletePerson={deletePerson}
+      />
     </div>
   );
 };

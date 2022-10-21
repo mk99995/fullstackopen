@@ -12,11 +12,10 @@ const Numbers = (props) => {
             .includes(props.newFilter.toLocaleLowerCase())
         )
         .map((item) => (
-          <React.Fragment key={item.name}>
-            <p>
-              {item.name} {item.number}
-            </p>
-          </React.Fragment>
+          <p key={item.id}>
+            {item.name} {item.number}
+            <button onClick={() => props.deletePerson(item.id)}>delete</button>
+          </p>
         ))}
     </>
   );
