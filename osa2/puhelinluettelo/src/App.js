@@ -22,7 +22,17 @@ const App = () => {
     event.preventDefault();
 
     if (persons.map((item) => item.name).includes(newName)) {
-      alert(`${newName} is already added to phonebook`);
+      let numberReplase = `${newName} is already added to phonebook, replace the old number with a new one`;
+      if (window.confirm(numberReplase)) {
+        const newPerson = {
+          name: newName,
+          number: newNumber,
+        };
+
+        let personsId = persons.filter((item) => item.name === newName)[0].id;
+
+        service.update(personsId, newPerson);
+      }
     } else {
       const newPerson = {
         name: newName,
@@ -36,11 +46,15 @@ const App = () => {
     }
   };
 
-  const deletePerson = (id) => {
-    service.remove(id);
-    service.getAll().then((personList) => {
-      setPersons(personList);
-    });
+  const deletePerson = (id, name) => {
+    if (window.confirm(`delete ${name}?`)) {
+      service.remove(id);
+      service.getAll().then((personList) => {
+        setPersons(personList);
+        console.log("asd");
+        return;
+      });
+    }
   };
 
   const handleNameInput = (event) => {

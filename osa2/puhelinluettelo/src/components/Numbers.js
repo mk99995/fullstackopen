@@ -14,7 +14,9 @@ const Numbers = (props) => {
         .map((item) => (
           <p key={item.id}>
             {item.name} {item.number}
-            <button onClick={() => props.deletePerson(item.id)}>delete</button>
+            <button onClick={() => props.deletePerson(item.id, item.name)}>
+              delete
+            </button>
           </p>
         ))}
     </>
