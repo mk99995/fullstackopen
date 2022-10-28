@@ -16,6 +16,13 @@ const App = () => {
     });
   };
 
+  const hookked = async () => {
+    await service.getAll().then((personList) => {
+      setPersons(personList);
+      console.log("hooked");
+    });
+  };
+
   useEffect(hook, []);
 
   const addName = (event) => {
@@ -32,12 +39,22 @@ const App = () => {
         let personsId = persons.filter((item) => item.name === newName)[0].id;
 
         service.update(personsId, newPerson);
+
+        service.getAll().then((personList) => {
+          setPersons(personList);
+          console.log("asd");
+          return;
+        });
       }
     } else {
+      let id = 1;
+      if (persons.length != 0) {
+        id = persons.at(-1).id + 1;
+      }
       const newPerson = {
         name: newName,
         number: newNumber,
-        id: persons.at(-1).id + 1,
+        id,
       };
       // setPersons(persons.concat(newPerson));
       service.create(newPerson).then((returned) => {
@@ -46,17 +63,18 @@ const App = () => {
     }
   };
 
-  const deletePerson = (id, name) => {
+  const deletePerson = async (id, name) => {
     if (window.confirm(`delete ${name}?`)) {
-      service.remove(id);
+      await service.remove(id);
+
+      // console.log(service.getAll().then);
+      // let a = service.getAll.then(all => )
       service.getAll().then((personList) => {
         setPersons(personList);
-        console.log("asd");
-        return;
       });
     }
   };
-
+  console.log(persons);
   const handleNameInput = (event) => {
     setNewName(event.target.value);
   };
