@@ -1,8 +1,10 @@
 import axios from "axios";
-const baseUrl = "https://muddy-sun-1618.fly.dev/api/persons";
+const baseUrl = "/api/persons";
 
 const getAll = () => {
+  console.log("getting all");
   const request = axios.get(baseUrl);
+  console.log("got all");
   return request.then((response) => response.data);
 };
 
@@ -11,8 +13,10 @@ const create = (newObject) => {
   return request.then((response) => response.data);
 };
 
-const remove = async (id) => {
-  const request = await axios.delete(`${baseUrl}/${id}`);
+const remove = (id) => {
+  console.log("removing");
+  const request = axios.delete(`${baseUrl}/${id}`);
+  console.log("removed");
   return request.then((response) => response.data);
 };
 

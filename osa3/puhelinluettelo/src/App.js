@@ -63,15 +63,17 @@ const App = () => {
     }
   };
 
-  const deletePerson = async (id, name) => {
+  const deletePerson = (id, name) => {
     if (window.confirm(`delete ${name}?`)) {
-      await service.remove(id);
-
-      // console.log(service.getAll().then);
-      // let a = service.getAll.then(all => )
+      service.remove(id);
+      console.log("end1");
       service.getAll().then((personList) => {
         setPersons(personList);
       });
+      console.log("end2");
+
+      // console.log(service.getAll().then);
+      // let a = service.getAll.then(all => )
     }
   };
   console.log(persons);
