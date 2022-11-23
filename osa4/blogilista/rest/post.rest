@@ -1,10 +1,11 @@
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
+Authorization: bearer string
 
     {
-    "title": "auds",
-    "author": "aasdsd",
-    "url": "adassd",
-    "likes": "123423"
+    "title": "assdd",
+    "userId": "637dd36bc3080e5262b8a3d0",
+    "url": "adssd.com",
+    "likes": "1223423"
     }
     
